@@ -19,7 +19,12 @@ namespace SimpleToDoApp.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] string task)
         {
-            var newTodo = new TodoItem { Id = todos.Count + 1, Task = task };
+            if (string.IsNullOrWhiteSpace(task))
+            {
+                return BadRequest("Task cannot be empty");
+            }
+            
+            var newTodo = new TodoItem { Id = todos.Count + 1, Task = task, IsDone = false };
             todos.Add(newTodo);
             return Ok(newTodo);
         }
