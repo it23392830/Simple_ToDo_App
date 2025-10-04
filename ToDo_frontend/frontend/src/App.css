@@ -1,54 +1,109 @@
+/* ===== 🌸 Global Styles ===== */
 body {
-  font-family: "Comic Sans MS", "Poppins", sans-serif;
+  font-family: "Poppins", "Quicksand", sans-serif;
   background: linear-gradient(to right, #ffdde1, #ee9ca7);
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
+/* ===== 🌸 Floating Flowers ===== */
+.flower {
+  position: absolute;
+  top: -50px;
+  animation: float 10s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ===== 🌸 App Container ===== */
 .app-container {
   max-width: 500px;
   margin: 60px auto;
-  background: white;
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 20px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-  padding: 25px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 30px;
   text-align: center;
+  backdrop-filter: blur(12px);
+  animation: fadeIn 0.6s ease-in-out;
+  position: relative;
+  z-index: 2;
 }
 
+/* ===== 🌸 Title ===== */
 .title {
-  font-size: 28px;
+  font-size: 30px;
+  font-weight: bold;
   color: #ff69b4;
   margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(255, 182, 193, 0.6);
 }
 
+/* ===== 🌸 Input Box ===== */
 .input-box {
   display: flex;
   gap: 10px;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 input {
   flex: 1;
-  padding: 10px;
-  border-radius: 12px;
+  padding: 12px;
+  border-radius: 20px;
   border: 2px solid #ffb6c1;
   font-size: 16px;
+  outline: none;
+  transition: 0.3s ease;
 }
 
+input:focus {
+  border-color: #ff69b4;
+  box-shadow: 0px 0px 6px #ffb6c1;
+}
+
+/* ===== 🌸 Buttons ===== */
 button {
-  background: #ff69b4;
+  background: linear-gradient(to right, #ff9a9e, #fad0c4);
   border: none;
-  padding: 10px 16px;
+  padding: 10px 18px;
   color: white;
-  border-radius: 12px;
+  border-radius: 999px;
   cursor: pointer;
   font-weight: bold;
+  transition: all 0.3s ease;
 }
 
-button:hover {
-  background: #ff85c1;
+button:hover:not(:disabled) {
+  transform: scale(1.07);
+  background: linear-gradient(to right, #fda7df, #ffdde1);
 }
 
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== 🌸 To-Do List ===== */
 .todo-list {
   list-style: none;
   padding: 0;
@@ -58,17 +113,94 @@ button:hover {
 .todo-item {
   background: #fff0f5;
   border: 1px solid #ffb6c1;
-  border-radius: 12px;
-  padding: 10px;
-  margin: 8px 0;
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin: 10px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: bounceIn 0.5s ease;
 }
 
+.todo-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 4px 12px rgba(255, 182, 193, 0.3);
+}
+
+.todo-item span {
+  color: #d63384;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.todo-item.completed {
+  background: #f0f8f0;
+  border-color: #90ee90;
+}
+
+.todo-item.completed span {
+  color: #228b22;
+}
+
+/* ===== 🌸 Delete Button ===== */
 .delete-btn {
-  background: transparent;
+  background: #ff4d6d;
   border: none;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
+  border-radius: 50%;
+  padding: 6px 10px;
+  margin-left: 6px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: #d63384;
+  transform: rotate(10deg) scale(1.1);
+}
+
+/* ===== 🌸 Update Button ===== */
+.update-btn {
+  background: #ffb347;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 50%;
+  padding: 6px 10px;
+  margin-right: 6px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.update-btn:hover {
+  background: #ff9800;
+  transform: scale(1.1);
+}
+
+/* ===== 🌸 Animations ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
 }
